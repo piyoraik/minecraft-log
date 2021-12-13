@@ -45,3 +45,4 @@ jobs:
         USER_NAME3: ${{secrets.USER_NAME3}}
         USER_NAME4: ${{secrets.USER_NAME4}}
         USER_NAME5: ${{secrets.USER_NAME5}}
+        WEBHOOK: ${{secrets.WEBHOOK}}
