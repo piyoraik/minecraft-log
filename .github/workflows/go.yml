@@ -21,7 +21,7 @@ jobs:
     - name: gzip logs
       run: |
         gzip -d logs/*.gz
-        rm latest.log
+        rm logs/latest.log
         
     - name: testLogs
       run: ls -l logs/
