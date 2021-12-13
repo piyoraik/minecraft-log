@@ -1,9 +1,12 @@
-#!/bin/bash
+#!/bin/sh
+
+server=$1
+password=$2
 
 expect -c "
-set timeout 30
-spawn scp -o StrictHostKeyChecking=no -r root@$1:/opt/minecraft_server/logs ./	
+set timeout 5
+spawn scp -o StrictHostKeyChecking=no -r root@${server}:/opt/minecraft_server/logs ./	
 expect \"Password:\"
-send \"$2\n\"
+send \"${password}\n\"
 interact
 "
