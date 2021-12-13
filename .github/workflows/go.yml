@@ -12,7 +12,6 @@ jobs:
       run: |
         sudo apt-get install expect
         sh ./.github/ssh.sh ${SERVER_IP} ${PASSWORD}
-        sleep 30
       env:
         SERVER_IP: ${{secrets.SERVER_IP}}
         PASSWORD: ${{secrets.PASSWORD}}
