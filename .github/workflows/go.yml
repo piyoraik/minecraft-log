@@ -31,5 +31,11 @@ jobs:
     - name: Run Go
       run: |
         go get
-        USER1=${secrets.USER1} USER2=${secrets.USER2} USER3=${secrets.USER3} USER4=${secrets.USER4} USER5=${secrets.USER5} go run main.go
+        go run main.go
+      env:
+        USER1: ${{secrets.USER1}}
+        USER2: ${{secrets.USER2}}
+        USER3: ${{secrets.USER3}}
+        USER4: ${{secrets.USER4}}
+        USER5: ${{secrets.USER5}}
         
