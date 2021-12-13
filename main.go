@@ -10,6 +10,8 @@ import (
 	"strings"
 	"time"
 
+	"minecraft-log/webhook"
+
 	"github.com/joho/godotenv"
 )
 
@@ -25,6 +27,7 @@ func main() {
 	var names = []string{os.Getenv("USER1"), os.Getenv("USER2"), os.Getenv("USER3"), os.Getenv("USER4"), os.Getenv("USER5")}
 	var viewNames = []string{os.Getenv("USER_NAME1"), os.Getenv("USER_NAME2"), os.Getenv("USER_NAME3"), os.Getenv("USER_NAME4"), os.Getenv("USER_NAME5")}
 	var start, end string
+	var msg []string
 
 	var files []string
 	files = dirWalk("./logs")
@@ -40,8 +43,11 @@ func main() {
 		h := t / 3600
 		m := (t / 60) % 60
 		s := t % 60
-		fmt.Printf("%s: %d時間%02d分%02d秒\n", viewNames[i], h, m, s)
+		msg = append(msg, fmt.Sprintf("%s: %d時間%02d分%02d秒\n", viewNames[i], h, m, s))
 	}
+
+	dw := &webhook.DiscordWebhook{UserName: "PlayTime", Content: strings.Join(msg, "")}
+	webhook.SendWebhook(os.Getenv("WEBHOOK"), dw)
 }
 
 // dirWalk 指定ディレクトリ内のファイル名を配列で返す
