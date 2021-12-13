@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Run sh
+    - name: Logs Download
       run: |
         sudo apt install sshpass
         sshpass -p ${PASSWORD} scp -o StrictHostKeyChecking=no -r ${USERNAME}@${SERVER_IP}:${FILE_PATH} ./
@@ -18,8 +18,13 @@ jobs:
         PASSWORD: ${{secrets.PASSWORD}}
         FILE_PATH: ${{secrets.FILE_PATH}}
 
-    - name: Test
-      run: ls -l
+    - name: gzip logs
+      run: |
+        gzip -d logs/*.gz
+        rm latest.log
+        
+    - name: testLogs
+      run: ls -l logs/
 
     - name: Set up Go
       uses: actions/setup-go@v2
