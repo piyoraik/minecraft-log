@@ -10,10 +10,11 @@ jobs:
     - uses: actions/checkout@v2
     - name: Run sh
       run: |
-        sudo apt-get install expect
-        sh ./.github/ssh.sh ${SERVER_IP} ${PASSWORD}
+        sudo apt install sshpass
+        sshpass -p ${PASSWORD} scp -o StrictHostKeyChecking=no -r ${USERNAME}@${SERVER_IP}:/opt/minecraft_server/logs ./
       env:
         SERVER_IP: ${{secrets.SERVER_IP}}
+        USERNAME: ${{secrets.USERNAME}}
         PASSWORD: ${{secrets.PASSWORD}}
 
     - name: Test
