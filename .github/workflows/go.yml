@@ -8,6 +8,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Run sh
+      run: |
+        sh ./.github/ssh.sh '${SERVER_IP}' '${PASSWORD}'
+        sleep 5
+      env:
+        SERVER_IP: ${{secrets.SERVER_IP}}
+        PASSWORD: ${{secrets.PASSWORD}}
+
+    - name: Test
+      run: ls -l
 
     - name: Set up Go
       uses: actions/setup-go@v2
