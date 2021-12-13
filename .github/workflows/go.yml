@@ -11,11 +11,12 @@ jobs:
     - name: Run sh
       run: |
         sudo apt install sshpass
-        sshpass -p ${PASSWORD} scp -o StrictHostKeyChecking=no -r ${USERNAME}@${SERVER_IP}:/opt/minecraft_server/logs ./
+        sshpass -p ${PASSWORD} scp -o StrictHostKeyChecking=no -r ${USERNAME}@${SERVER_IP}:${FILE_PATH} ./
       env:
         SERVER_IP: ${{secrets.SERVER_IP}}
         USERNAME: ${{secrets.USERNAME}}
         PASSWORD: ${{secrets.PASSWORD}}
+        FILE_PATH: ${{secrets.FILE_PATH}}
 
     - name: Test
       run: ls -l
