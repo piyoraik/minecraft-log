@@ -7,15 +7,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: copy file via ssh password
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.SERVER_IP }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        port: ${{ secrets.PORT }}
-        source: "/opt/minecraft_server/logs"
-        target: "./"
+    - uses: actions/checkout@v2
+    - name: Run sh
+      run: |
+        sudo apt-get install expect
+        sh ./.github/ssh.sh ${SERVER_IP} ${PASSWORD}
+        sleep 30
+      env:
+        SERVER_IP: ${{secrets.SERVER_IP}}
+        PASSWORD: ${{secrets.PASSWORD}}
 
     - name: Test
       run: ls -l
