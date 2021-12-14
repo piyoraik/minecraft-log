@@ -2,7 +2,7 @@ name: Minecraft PlayTime
 
 on:
   schedule:
-    - cron:  '10 16 * * *'
+    - cron:  '00 14 * * *'
   workflow_dispatch:
 
 jobs:
