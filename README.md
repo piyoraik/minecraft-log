@@ -1,4 +1,5 @@
 # マインクラフトのログファイルからユーザごと稼働時間を調べる
+[![Minecraft PlayTime](https://github.com/piyoraik/minecraft-log/actions/workflows/go.yml/badge.svg)](https://github.com/piyoraik/minecraft-log/actions/workflows/go.yml)  
 `logs/` ディレクトリにlogファイルを入れることで、ユーザごとのマインクラフトをしている時間を調べることができる。
 
 ## 使い方
