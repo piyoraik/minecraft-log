@@ -15,7 +15,7 @@ jobs:
         echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
         scp -o StrictHostKeyChecking=no -i private_key -r ${USERNAME}@${SERVER_IP}:${FILE_PATH} ./
       env:
-        SERVER_IP: ${{secrets.SERVER_IP}}
+        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         USERNAME: ${{secrets.USERNAME}}
         PASSWORD: ${{secrets.PASSWORD}}
         FILE_PATH: ${{secrets.FILE_PATH}}
